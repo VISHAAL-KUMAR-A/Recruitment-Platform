@@ -138,9 +138,11 @@ export const AuthProvider = ({ children }) => {
   // Update user profile
   const updateUserProfile = async (profileData) => {
     try {
-      const updatedProfile = await userAPI.updateProfile(profileData);
-      dispatch({ type: 'SET_USER', payload: updatedProfile });
-      return updatedProfile;
+      await userAPI.updateProfile(profileData);
+      // Get the complete profile data after update to ensure all computed fields are included
+      const completeProfile = await userAPI.getProfile();
+      dispatch({ type: 'SET_USER', payload: completeProfile });
+      return completeProfile;
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'Profile update failed';
       dispatch({ type: 'SET_ERROR', payload: errorMessage });

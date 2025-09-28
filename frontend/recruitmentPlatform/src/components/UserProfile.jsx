@@ -55,9 +55,20 @@ const UserProfile = () => {
   const handleSave = async () => {
     setSaveLoading(true);
     try {
-      const updatedProfile = await updateUserProfile(editData);
+      // Prepare data for saving - ensure proper formatting
+      const dataToSave = {
+        ...editData,
+        experience_years: parseInt(editData.experience_years || 0, 10),
+        // Clean up skills - remove extra spaces and empty entries
+        skills: editData.skills ? editData.skills.trim() : ''
+      };
+      
+      const updatedProfile = await updateUserProfile(dataToSave);
       setProfile(updatedProfile);
       setIsEditing(false);
+      
+      // Refresh profile data to ensure consistency
+      await fetchProfile();
     } catch (error) {
       console.error('Failed to update profile:', error);
     } finally {
@@ -67,9 +78,21 @@ const UserProfile = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    let processedValue = value;
+    
+    // Handle experience_years - ensure it's a valid integer without leading zeros
+    if (name === 'experience_years') {
+      // Remove leading zeros and ensure it's a valid number
+      processedValue = value.replace(/^0+/, '') || '0';
+      // Ensure it's not empty and is a valid number
+      if (processedValue === '' || isNaN(processedValue)) {
+        processedValue = '0';
+      }
+    }
+    
     setEditData(prev => ({
       ...prev,
-      [name]: value
+      [name]: processedValue
     }));
   };
 
@@ -372,11 +395,13 @@ const UserProfile = () => {
                   </label>
                   {isEditing ? (
                     <input
-                      type="number"
+                      type="text"
                       name="experience_years"
                       value={editData.experience_years || 0}
                       onChange={handleChange}
-                      min="0"
+                      pattern="[0-9]*"
+                      inputMode="numeric"
+                      placeholder="Enter years of experience"
                       className="w-full px-3 py-2 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-700 text-gray-900 dark:text-gray-100"
                     />
                   ) : (

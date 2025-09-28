@@ -152,6 +152,17 @@ A modern, full-stack recruitment platform built with Django REST Framework and R
 - **Forms**: Consistent input styling
 - **Animations**: Framer Motion transitions
 
+## 📚 Documentation
+
+- **[README.md](README.md)** - Project overview, setup, and basic features
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Comprehensive architectural documentation including:
+  - API structure and design decisions
+  - Authentication flow and security implementation
+  - Error management and validation strategies
+  - Scaling suggestions and production considerations
+  - Performance optimization techniques
+  - Security best practices
+
 ## 🚀 Future Enhancements
 
 - Job posting and application system

@@ -109,13 +109,16 @@ def logout(request):
     Logout user by blacklisting the refresh token
     """
     try:
-        refresh_token = request.data["refresh_token"]
-        token = RefreshToken(refresh_token)
-        token.blacklist()
+        refresh_token = request.data.get("refresh_token")
+        if refresh_token:
+            token = RefreshToken(refresh_token)
+            token.blacklist()
         return Response({
             'message': 'Logout successful'
         }, status=status.HTTP_205_RESET_CONTENT)
     except Exception as e:
+        # Even if token blacklisting fails, consider logout successful
+        # since the client will clear tokens anyway
         return Response({
-            'error': 'Invalid token'
-        }, status=status.HTTP_400_BAD_REQUEST)
+            'message': 'Logout successful'
+        }, status=status.HTTP_205_RESET_CONTENT)
