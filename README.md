@@ -61,7 +61,9 @@ A modern, full-stack recruitment platform built with Django REST Framework and R
 
 2. Install Python dependencies:
    ```bash
-   pip install djangorestframework djangorestframework-simplejwt django-cors-headers
+   pip install -r requirements.txt
+   # For development with additional tools:
+   pip install -r requirements-dev.txt
    ```
 
 3. Run migrations:
@@ -162,6 +164,18 @@ A modern, full-stack recruitment platform built with Django REST Framework and R
   - Scaling suggestions and production considerations
   - Performance optimization techniques
   - Security best practices
+- **[docs/API_DOCUMENTATION.md](docs/API_DOCUMENTATION.md)** - Complete API reference with:
+  - Detailed endpoint documentation
+  - Request/response examples
+  - Authentication requirements
+  - Error handling patterns
+  - Rate limiting information
+- **[docs/DATABASE_SCHEMA.md](docs/DATABASE_SCHEMA.md)** - Database design documentation with:
+  - Complete schema definitions
+  - Relationship diagrams
+  - Index strategies
+  - Migration patterns
+  - Performance considerations
 
 ## 🚀 Future Enhancements
 

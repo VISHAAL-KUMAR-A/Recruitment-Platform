@@ -1,0 +1,50 @@
+# Django Framework
+Django==5.2
+
+# Django REST Framework for API development
+djangorestframework==3.15.2
+
+# JWT Authentication
+djangorestframework-simplejwt==5.3.0
+
+# CORS headers for frontend integration
+django-cors-headers==4.4.0
+
+# Image processing for profile pictures
+Pillow==10.4.0
+
+# Production database support
+psycopg2-binary==2.9.9
+
+# Environment variable management
+python-decouple==3.8
+
+# Production server
+gunicorn==22.0.0
+
+# File storage for cloud deployment
+django-storages==1.14.4
+boto3==1.35.39
+
+# Redis for caching and sessions
+redis==5.1.1
+django-redis==5.4.0
+
+# Background task processing
+celery==5.3.4
+
+# Monitoring and logging
+sentry-sdk==2.15.0
+
+# API documentation
+drf-spectacular==0.27.2
+
+# Security enhancements
+django-security==0.18.0
+
+# Rate limiting
+django-ratelimit==4.1.0
+
+# Development dependencies (comment out for production)
+# django-debug-toolbar==4.4.6
+# django-extensions==3.2.3
